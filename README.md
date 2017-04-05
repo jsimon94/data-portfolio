@@ -1,2 +1,2 @@
-# P2
-Project 2 of audacity DAND
+# Udacity DAND 
+Projects that I have completed in Udacity DAND
