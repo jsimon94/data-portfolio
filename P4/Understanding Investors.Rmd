@@ -1,0 +1,558 @@
+---
+title: "Understanding Investors"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(gridExtra)
+library(zoo)
+library(GGally)
+knitr::opts_chunk$set(echo = TRUE)
+loan <- read.csv("prosperLoanData.csv", header = TRUE, sep = ",", na.strings=c("", "NA"))
+```
+# Univariate Plots Section
+
+In this report, I will be exploring the Prosper lender's data to find insights on the factors the investors are more willing to fund the loans in this data set. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+dim(loan)
+```
+
+This data set contains 81 columns and 113,937 rows.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#Loan Year
+loan$Loan_Yr <- format(as.Date(loan$ListingCreationDate),"%Y")
+loan$Loan_Yr <- as.factor(loan$Loan_Yr)
+
+#Listing Category
+
+loan$ListingCategory <- factor(loan$ListingCategory..numeric.,
+                               labels = c("N/A",
+                                          "Debt Consolidation",
+                                          "Home Improvement", 
+                                          "Business", 
+                                          "Personal Loan", 
+                                          "Student Use", 
+                                          "Auto", 
+                                          "Other", 
+                                          "Baby&Adoption", 
+                                          "Boat", 
+                                          "Cosmetic Procedure", 
+                                          "Engagement Ring", 
+                                          "Green Loans", 
+                                          "Household Expenses",
+                                          "Large Purchases", 
+                                          "Medical/Dental",    
+                                          "Motorcycle", 
+                                          "RV", 
+                                          "Taxes", 
+                                          "Vacation", 
+                                          "Wedding Loans"))
+str(loan)
+```
+
+This data set originally contain 81 variables from various types ranging from dates to factors. I created 2 more variables: Loan Year and Listing Category.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=Investors), data = loan) +
+  geom_histogram(bins = 50)+
+  coord_cartesian(xlim = c(0,250))
+```
+
+Number of Investors exhibits a positive skew mean 80.48 > median 44.00. There are more loans with number of investors less than 50.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+p1 <-ggplot(aes(x=LoanOriginalAmount), data = loan)+
+  geom_histogram(binwidth = 500)
+
+p2 <- ggplot(aes(x=LoanOriginalAmount), data = loan)+
+  geom_histogram(binwidth = 500)+
+  scale_y_log10()+
+  ylab("log10(count)")
+
+grid.arrange(p1, p2, ncol = 1)
+
+summary(loan$LoanOriginalAmount)
+```
+
+In the first graph, loan amount exhibits a positive skew, mean 8337 > median 6500 but it doesn't show count values between 20,000 and 30,000 loan amount. For the second graph, I took log10 of the y axis to see the loan original amount greater than 20,000. There are loans that are greater than 30,000. The maximum amount is 35,000 in this data set. Notice that there is gap surrounding 30,000. Perhaps for the loan amounts that are closer to 30,000 (like 29,000 and 31,0000), the number of those loans are very small.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=MonthlyLoanPayment), data = loan)+
+  geom_histogram(bins=100)
+```
+
+Monthly Loan Payment exhibits a positive skew, mean 273 > median 218.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=factor(Term)), data = loan)+
+  geom_bar() + 
+  xlab("Term")
+```
+
+Most of the loans are 3 year (36 months) loans. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=Loan_Yr), data = loan)+
+  geom_bar() +
+  xlab("Year")
+```
+
+This shows the amount of loans offered for years of 2005-2014. There was an increase from 2006-2008 but dropped in 2009. According to Wikipedia, prosper closed the website for six months from October 2008 to July 2009. At that time, no one could not take out any loans which contributes to the dramatic decrease in 2009. After 2009, the number increased until 2013.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=StatedMonthlyIncome), data = loan)+
+  geom_histogram(binwidth = 500)+
+  coord_cartesian(xlim=c(0,20000))
+```
+
+Monthly Income of the borrowers exhibit a positive skew mean 5600 > median 4666. The monthly income that are less than 5,000 has the highest frequency.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=IncomeRange), 
+       data= subset(loan, IncomeRange != "Not displayed"))+
+      geom_bar()+
+      scale_x_discrete (limits = c('Not employed',
+                                  '$0', 
+                                  '$1-24,999',
+                                  '$25,000-49,999',
+                                  '$50,000-74,999',
+                                  '$75,000-99,999',
+                                  '$100,000+')) +
+      ylab("Number of Borrowers")
+
+summary(loan$IncomeRange)
+```
+
+Vast majority of the borrower's income is between $25,000-74,999.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=LenderYield), data = loan) +
+  geom_histogram()
+```
+
+Lender Yield (interest rate minus servicing fee) exhibits a normal distribution, mean 0.18 ~ median 0.17.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=EstimatedReturn), data = loan)+
+  geom_histogram(bins=50)+
+  coord_cartesian(xlim = c(0, 0.2))
+```
+
+The Estimated Return exhibits a normal distribution, mean 0.1 ~ median 0.1. Most loans have an estimated return between 0.05 and 0.1.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=EstimatedLoss), data = loan)+
+  geom_histogram(bins=100)
+```
+
+A lot of the loans have estimated loss between 0 and 0.1. There is a gap before 0.1.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=CreditScoreRangeLower), data = loan)+
+  geom_bar() +
+  coord_cartesian(xlim = c(400,800)) +
+  ylab("Number of Borrowers")
+```
+
+Credit ranges are normally distributed with mean = 685 and median 680. I will only use Credit Score Range Lower throughout this analysis. Credit Score Range Higher has a very similar distribution but 20 points higher.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=DebtToIncomeRatio), data = loan)+
+  geom_histogram(bins=500)+
+  coord_cartesian(xlim = c(0,1))
+```
+
+Debt to Income Ratio peaks near 2.5, and decreases after 2.5. Mean is 0.28. I wonder if debt to income ratio varies by loan categories(check in bi variate section).
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=ProsperRating..Alpha.), data = loan)+
+  geom_bar()
+```
+
+The Prosper Rating of C have the highest total amount of loans. From the Prosper Website, each Prosper Rating represents an average annualized loss rate range. One possibility is that C loans could be in higher demand compared to other prosper loans. It's possible that investors invest in loans in more than one rating to build their investment portfolio to gain more returns and balance out the loans. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=InvestmentFromFriendsCount), data = loan)+
+  geom_histogram()+
+  coord_cartesian(xlim=c(0,3))
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=InvestmentFromFriendsCount), 
+       data = subset(loan, InvestmentFromFriendsCount >0))+
+      geom_histogram(bins=100)+
+      coord_cartesian(xlim=c(0,10))+
+      scale_y_log10()
+
+count(loan, InvestmentFromFriendsCount>0)
+```
+
+The vast majority of loans are not funded by friends of the borrowers. Mean is 0.02. 2,131 loans have some investments from friends of the borrowers. Out of those loans, majority of them have 1-2 friends who made the investment which is shown in the second graph (the y axis is transformed with log10).
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=EmploymentStatusDuration), data = loan)+
+  geom_histogram()
+```
+
+Employment duration exhibits a positive skew mean 96 > median 67. It looks like more people that are employed in shorter duration.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=ListingCategory), data = subset(loan, ListingCategory!="N/A") ) +
+  geom_bar(color='white', fill='black') +
+  theme(axis.text.x = element_text(angle=90)) +
+  scale_y_sqrt()+
+  ylab("Sqrt(count)")
+```
+
+Debt consolidation loans is the leading loan category in number of loans . I wonder what loans the borrowers are consolidating.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+loan.by.cat <- loan %>%
+          group_by(ListingCategory) %>%
+          summarise(
+          sum_investors = sum(Investors),
+          loan_amount_total = sum(LoanOriginalAmount),
+          n=n()) %>%
+          arrange(ListingCategory)
+
+loan.by.cat          
+```
+
+I created a table of the loan listing categories with the total number of investors and total amount of loans. Debt Consolidation have the highest amount of investors in addition to the number of loans. It seems there are a lot of loans not classified.
+
+# Univariate Analysis
+
+### What is the structure of your dataset?
+There are 11,937 loans and 81 variables in this data set. The variables I will be focusing on will be investors, listing category, lender's yield, loan year, term, debt to income ratio, credit score, prosper rating(alpha and numeric) and estimated return.
+
+Here's what I observed so far:
+
+1. Most loans are under $10k.
+2. Most loans have 3 year terms.
+2. Most loans have less than 50 investors.
+3. Most of the borrower's incomes is between $25k-74,999.
+4. Mean of the lender's yield is 0.18.
+5. Mean of estimated return is 0.1
+6. Most loans have a risk level: C
+7. Debt consolidation loans is the leading category in the total number of investors and number of loans.
+
+### What is/are the main feature(s) of interest in your dataset?
+
+There are a lot of features of interest in my data set. The main feature of interest is investors. 
+
+### What other features in the dataset do you think will help support your \
+investigation into your feature(s) of interest?
+
+listing category, credit scores, lender's yield, estimated return, and loan status will help.
+
+### Did you create any new variables from existing variables in the dataset?
+
+Yes. I created loan year (the year the loan was listed) and listing category (category of the loan). 
+
+### Of the features you investigated, were there any unusual distributions? \
+Did you perform any operations on the data to tidy, adjust, or change the form \
+of the data? If so, why did you do this?
+No.
+
+# Bivariate Plots Section
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=factor(Term), y=Investors), data = loan) +
+  geom_bar(stat = 'summary', fun.y=mean) +
+  xlab("Term")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=factor(Term), y=Investors), data = loan) +
+  geom_boxplot( ) + scale_y_log10()
+```
+
+Let's check the average amount of investors per term loan. 3 year loans have the highest average of investors. Since most loans are 3 years, it's not surprising that 3 year loans have the highest average amount of investors. Notice that 5 year loans have the widest range in comparison to 1 and 3 year loans in the box plot graph.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=factor(Term), y=LenderYield), data = loan) +
+  geom_bar(stat = 'summary', fun.y=median) +
+  ylab("Median LenderYield")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=factor(Term), y=LenderYield), data = loan) +
+  geom_boxplot() 
+```
+
+5 year term have the highest median lender yield. However, 3 year term have the widest range of lender's yield.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=ListingCategory, y= DebtToIncomeRatio), data = subset(loan, ListingCategory!="N/A")) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle=90)) +
+  coord_cartesian(ylim = c(0,0.4))
+```
+
+It seems that the debt to income ratio is the similar for all loan categories. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=CreditScoreRangeLower, y=Investors), data = subset(loan, CreditScoreRangeLower!=0)) +
+  geom_jitter(alpha =0.01)+     
+  geom_smooth(method = "lm", se = FALSE,size=1)
+```
+
+Credit Score of 700+ has the highest amount of Investors. Perhaps more investors are willing to invest borrowers whose credit score is 700 or higher from the regression line.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=CreditScoreRangeLower, y=LenderYield), data =subset(loan, CreditScoreRangeLower!=0)) +
+  geom_jitter(alpha=0.1)+
+  geom_smooth(method="lm", se=FALSE, size =1)
+```
+
+From the regression line, as credit score increases, the lender yield decreases.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=EstimatedReturn, y=Investors), data = loan)+
+  geom_jitter(alpha=0.25)+
+  geom_smooth(method="lm", se=FALSE, size =1)
+```
+
+Most investors have an estimated return between 0 and 0.1 from the loans. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+ggplot(aes(x=ListingCategory, y= CreditScoreRangeLower), data = subset(loan, ListingCategory!="N/A") ) +
+  geom_boxplot()+
+  theme(axis.text.x = element_text(angle=90)) 
+
+```
+
+Credit Score Range is similar across all loan listing categories. A few categories have credit score above 800 like Debt Consolidation, Auto, and  Household expenses. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=LenderYield, y=BorrowerRate), data = loan)+
+  geom_jitter()
+```
+
+Borrower rate correlates to lender yield. As borrower rate increases, the lender's yield increases.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(y=Investors, x=factor(ProsperScore)), data = subset(loan, ProsperScore!= "NA"))+
+  geom_violin()
+```
+
+The number of investors increases as prosper score increases. More investors are wiling to fund the loans that are that have prosper score above 7.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=ProsperRating..Alpha., y=Investors), 
+       data= subset(loan, ProsperRating..Alpha. != "NA")) +
+    geom_boxplot(aes(fill = ProsperRating..Alpha.)) +
+    guides(fill = guide_legend(title = "ProsperRating"))+
+    ylim(0,200)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+with(loan, by(Investors, ProsperRating..Alpha., summary))
+```
+
+The highest amount of investors are investing in lower risk loans where prosper rating is A than higher risk loans like HR. The Prosper Rating AA has the highest amount of investors. Let's check if the lender yield correlates to the risk of loans.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=ProsperRating..Alpha., y= LenderYield), data = subset(loan, ProsperRating..Alpha.!= "NA" ))+
+  geom_boxplot() +
+  stat_summary(fun.y = "mean", 
+               geom = "point", 
+               color = "red", 
+               shape = 8, 
+               size = 4)
+```
+
+HR (highest risk) have the highest lender's yield while AA (lower risk) have the lowest average lender's yield. Let's check on the rating in relation to debt to income ratio.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=ProsperRating..Alpha., y= DebtToIncomeRatio), 
+       data = subset(loan, ProsperRating..Alpha.!= "NA" ))+
+  geom_boxplot( )+
+  ylim (0,0.5)+ 
+  stat_summary(fun.y = "mean", 
+               geom = "point", 
+               color = "red", 
+               shape = 8, 
+               size = 4)
+```
+
+Similar to the previous plot, HR has the highest debt to income ratio while AA has the lowest. Does that mean borrowers in HR category are more defaulted loans?
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x= ProsperRating..Alpha.), data = subset(loan,LoanStatus="Defaulted", ProsperRating..Alpha.!= is.na(ProsperRating..Alpha.)))+
+  geom_bar()+
+  ylab("Number of Loans Defaulted")
+```
+
+Even though HR has the highest debt-to-income ratio, it does not have the highest number of loans defaulted. C loans have the highest number of defaulted loans which is unexpected. Is there a correlation between debt-to-income ratio and number of days the loan is delinquent?
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+cor.test(loan$DebtToIncomeRatio, loan$LoanCurrentDaysDelinquent)
+
+ggplot(aes(x=DebtToIncomeRatio, y=LoanCurrentDaysDelinquent), data= loan)+
+  geom_jitter(alpha=0.01)
+```
+
+The correlation is 0.05 which tells me that there is very little positive correlation. The scatter graph shows the lower debt to income ratio has the highest amount of days the loan is delinquent. There is no relationship between the two. Is there a correlation between the prosper rating (risk) and number of days the loan is delinquent?
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+cor.test(loan$ProsperScore, loan$LoanCurrentDaysDelinquent)
+
+ggplot(aes(x=ProsperScore, y=LoanCurrentDaysDelinquent), 
+       data = loan)+
+       geom_jitter(alpha=0.1)
+```
+
+The correlation is -0.04 which tells me there is very little negative correlation between risk and days that the loan is delinquent. The graph shows very little relationship between the two.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=Loan_Yr, y=Investors), data = loan) +
+  geom_boxplot()
+```
+
+The graph above shows the number of investors are investing loans per year. There was an increase number of investors in 2006-2008 but the number decreased drastically in 2009. On November 2008, a class lawsuit was filed against Prosper in California. The investors alleged that Prosper offered and sold unqualified and unregistered securities in the violation of the California and federal securities laws. The lawsuit was settled on July 2013 (source:https://en.wikipedia.org/wiki/Prosper_Marketplace). Prosper closed the website for six months from October 2008 to July 2009. The number of investors dropped in 2009 due to the temporarily closed prosper website and the lawsuit. 
+
+# Bivariate Analysis
+
+### Talk about some of the relationships you observed in this part of the \
+investigation. How did the feature(s) of interest vary with other features in \
+the data set?
+Investors strongly correlate to the risk of the loans (prosper rating alpha).
+
+Investors also correlate with credit scores. It seems like they are more willing to invest of credit scores of 700+. 
+
+The highest number of investors are enrolled in 2013. There was a drop of investors in the year of 2009.
+
+### Did you observe any interesting relationships between the other features \
+(not the main feature(s) of interest)?
+
+The risk of the loan does not indicate whether the loans will be in default. HR has the highest debt-to-income ratio but C has the highest number of loans in default.
+
+Another interesting relationship I found was that credit scores does not correlates to lender's yield. Investors gain the same amount of returns across variations of risks.
+
+### What was the strongest relationship you found?
+The strongest relationship I found is that the higher the risk of the loan, the higher debt to income ratio will become. 
+
+# Multivariate Plots Section
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=Loan_Yr, y=Investors), data = loan) +
+ geom_boxplot(color="black")+
+ facet_wrap(~Term)+
+ theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+The graph above show the number of investors per year by the term of the loan. From the bi variate section, we saw that the number of investors dropped drastically in 2009 due to the temporary closing and the lawsuit. In this graph, the 36 term loans have the highest amount of investors in 2009. However, the 12 month and 60 month term loans don't have any investors until 2010. Maybe 12 and 60 month term loans were not offered prior to 2010 could be a possibility.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x=CreditScoreRangeLower, y=Investors, color = factor( ProsperScore)), data = subset(loan, ProsperScore !="NA"))+
+  geom_jitter() + 
+  geom_smooth(method = "lm", se = FALSE,size=1) +
+  xlim(500,900)
+```
+
+From this graph, the higher number of investors invest in loans with a high prosper score and credit score higher than 700. Notice that there is a dot, prosper score of 7 athat lies near 1200 grid line. There are about 1200 investors who invest in a loan with a prosper score of 7 for a credit score between 750 and 800.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+loan$EstimatedReturn.bucket = cut(loan$EstimatedReturn,
+                            c(0, 0.1, .2, 0.3, 0.4))
+ggplot(aes(x = factor(ListingCategory..numeric.), y = Investors), 
+       data = loan)+ 
+  geom_boxplot(aes(fill = EstimatedReturn.bucket) )+
+  ylim(0,250)
+```
+
+From this graph, the estimated return are highest with the debt consolidation category (listing category 1). Perhaps this is why, debt consolidation loans have the highest number of investors.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(aes(x = factor(Term), y = Investors), 
+       data = loan)+ 
+  geom_boxplot(aes(fill = EstimatedReturn.bucket))+
+  ylim(0,200)
+```
+
+This graph shows the estimated return buckets for each term loan for the amount of investors. 3 year term has all buckets of estimated return while 1 year and 5 year term have only (0, 0.1) and (0.1-0.2) buckets. There is a small box for the 1 year term but there is no indication of which bucket it is (0.2-0.3 or NA). 
+
+# Multivariate Analysis
+
+### Talk about some of the relationships you observed in this part of the \
+investigation. Were there features that strengthened each other in terms of \
+looking at your feature(s) of interest?
+
+The number of investors are highest with the credit score higher than 700 and a high prosper score(like higher than 7). They are more willing to invest in loans that are low risk and the corresponding borrower's credit score is very good. 
+
+### Were there any interesting or surprising interactions between features?
+
+That the 36 month term loans have the highest number of investors in 2009 even though in the loan vs. investor graph in the bi variate section, 2009 has the lowest number of investors. 
+
+### OPTIONAL: Did you create any models with your dataset? Discuss the \
+strengths and limitations of your model.
+I didn't create any models in this data set.
+
+# Final Plots and Summary
+
+### Plot One
+
+```{r echo=FALSE, warning=FALSE, Plot_One}
+ggplot(aes(x=ProsperRating..Alpha., y=Investors), 
+       data=subset(loan, ProsperRating..Alpha. != "N/A")) +
+    geom_boxplot(aes(fill = ProsperRating..Alpha.)) +
+    guides(fill = guide_legend(title = "ProsperRating"))+
+    ylim(0,200) +
+    xlab("Prosper Rating by Letter") +
+    ylab("Number of Investors") +
+    ggtitle("Number of Investors by Prosper Rating")
+```
+
+### Description One
+
+This is a box plot of the number of investors per Prosper Rating by letter. Prosper rating is a loan risk score from low risk (A) to high risk (HR). This box plot shows that the loan prosper rating of AA has the highest 3rd quantile and highest average number of investors. Investors are more willing to invest in low risk loans than high risk loans.
+
+### Plot Two
+
+```{r echo=FALSE, warning=FALSE,  Plot_Two}
+ggplot(aes(x=CreditScoreRangeLower, y=Investors, color = factor( ProsperScore)), data = subset(loan, ProsperScore !="NA"))+
+  geom_jitter() + 
+  geom_smooth(method = "lm", se = FALSE,size=1) +
+  xlim(500,900)+
+  xlab("Credit Score") +
+  ylab("Number of Investors")+
+  ggtitle("Number of Investors per Credit Score with Prosper Score")
+```
+
+### Description Two
+
+This is a scatter plot of about number of investors by credit scores fill in by prosper score (numeric). Keep in mind that the higher the prosper score, the lower the risk of the loan. This map shows the highest amount of investors are in the area where prosper score is higher 7.0 and the credit score is higher than 700+. Notice that there is a dot, prosper score of 7 athat lies near 1200 grid line. There are about 1200 investors who invest in a loan with a prosper score of 7 for a credit score between 750 and 800. From this graph, investors are more likely to invest in loans where the risk is low and the borrower's credit score is high.
+
+### Plot Three
+
+```{r echo=FALSE, warning=FALSE, Plot_Three}
+ggplot(aes(x=Loan_Yr, y=Investors), data = loan) +
+ geom_boxplot(color="black")+
+ facet_wrap(~Term)+
+ theme(axis.text.x = element_text(angle = 90, hjust = 1))+
+ coord_cartesian(ylim = c(0,450))+
+ ylab("Number of Investors") +
+ xlab("Loan Year") +
+ ggtitle("Number of Investors per Year by the loan term(months)")
+```
+
+### Description Three
+
+This graph shows the number of investors who invest in 12, 36, and 60 month term loans by year. 36 month term loans have the highest number of investors in 2009 even though Prosper had a lawsuit and their website was temporarily shutdown in the same year. The number of investors for 12 and 60 month term loans appear from 2010 onward. Notice that 60 month (5 year) term has the highest amount of investors in 2010. There is no boxplot for 2014 for all terms. Only outliers for 36 and 60 month terms. One possibility is that the year of the listings stops mid 2014 not the end of the year.
+
+------
+
+# Reflection
+
+When I started exploring the data set, I was confused on what to do analysis on. There were 81 variables and it was hard for me to choose what variables would be useful and which variable could be my main focus. I didn't know what to look for in this data set. I started to explore without any expectations. But I was more confused. I decided to focus on the investors of this data set out of the blue. The analysis was so much smoother.
+
+I explore what factors investors are willing to invest in loans. So far, I discovered is credit score of borrower, risk of the loan, and loan category from the loan listings in the data set. The problem is every observation is a loan, not an investor. There is a possibility that investors invest in more than one loan. I would like to further my analysis on a data set than contain investors as an observation and the loans they are investing. I also want to find out how much returns they earn each year from their portfolio. Which portfolio yields the highest returns? Which portfolio yields the lowest returns? 
