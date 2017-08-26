@@ -11,4 +11,10 @@ Used NumPy and Pandas to answer that question based on the data and created a re
 Chose a region and used data munging techniques to assess the quality of the data for validity, accuracy, completeness, consistency and uniformity.
 
 ## P4: Explore and Summarize Data
-Investigated a dataset using R and exploratory data analysis techniques, exploring both single variables and relationships between variables
+Investigated a dataset using R and exploratory data analysis techniques, exploring both single variables and relationships between variables.
+
+## P5: Identify Fraud from Enron Email
+Identified persons of interest (who may committed fraud) in the public Enron dataset, using Naive Bayes Algorithm.
+
+## P6: Storytelling in Tableau
+Explored performance differences among baseball players who are right-handed, left-handed, and both-handed.
