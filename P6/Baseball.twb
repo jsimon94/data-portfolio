@@ -1,0 +1,1780 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 10300.17.0728.2252                               -->
+<workbook original-version='10.3' source-build='10.3.2 (10300.17.0728.2252)' source-platform='mac' version='10.3' xml:base='https://public.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <repository-location id='BaseballFinal_0' path='/workbooks' revision='1.0' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='baseball_data' inline='true' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' version='10.3'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='baseball_data' name='textscan.1js2kvs0oldm681fqze9n02270vu'>
+            <connection class='textscan' cleaning='yes' compat='no' csvFile='/Users/jennifersimon/Desktop/DAND/P6/baseball_data.csv' dataRefreshTime='' directory='/Users/jennifersimon/Desktop/DAND/P6' filename='baseball_data.csv' interpretationMode='8' password='' server='' validate='no' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.1js2kvs0oldm681fqze9n02270vu' name='baseball_data.csv1' table='[baseball_data#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='string' name='name' ordinal='0' />
+            <column datatype='string' name='handedness' ordinal='1' />
+            <column datatype='integer' name='height' ordinal='2' />
+            <column datatype='integer' name='weight' ordinal='3' />
+            <column datatype='real' name='avg' ordinal='4' />
+            <column datatype='integer' name='HR' ordinal='5' />
+          </columns>
+        </relation>
+        <refresh increment-key='' incremental-updates='false' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[name]</local-name>
+            <parent-name>[baseball_data.csv1]</parent-name>
+            <remote-alias>name</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>handedness</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[handedness]</local-name>
+            <parent-name>[baseball_data.csv1]</parent-name>
+            <remote-alias>handedness</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>height</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[height]</local-name>
+            <parent-name>[baseball_data.csv1]</parent-name>
+            <remote-alias>height</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>weight</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[weight]</local-name>
+            <parent-name>[baseball_data.csv1]</parent-name>
+            <remote-alias>weight</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>avg</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[avg]</local-name>
+            <parent-name>[baseball_data.csv1]</parent-name>
+            <remote-alias>avg</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>HR</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[HR]</local-name>
+            <parent-name>[baseball_data.csv1]</parent-name>
+            <remote-alias>HR</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[baseball_data.csv1]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='Avg' datatype='real' name='[avg]' role='measure' type='quantitative' />
+      <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+      <column caption='Height' datatype='integer' name='[height]' role='measure' type='quantitative' />
+      <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+      <column caption='Weight' datatype='integer' name='[weight]' role='measure' type='quantitative' />
+      <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+      <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='/Users/jennifersimon/Documents/My Tableau Repository/Datasources/baseball_data.tde' schema='Extract' tablename='Extract' update-time='08/17/2017 12:55:09 AM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+          <refresh increment-key='' incremental-updates='false'>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='1157' timestamp-start='2017-08-17 00:55:09.216' />
+          </refresh>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>HR</remote-name>
+              <remote-type>2</remote-type>
+              <local-name>[HR]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>HR</remote-alias>
+              <ordinal>0</ordinal>
+              <family>baseball_data.csv1</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>212</approx-count>
+              <contains-null>false</contains-null>
+              <statistics>
+                <statistic aggregation='Sum' datatype='real'>52481.0</statistic>
+                <statistic aggregation='Avg' datatype='real'>45.359550561797754</statistic>
+                <statistic aggregation='Min' datatype='integer'>0</statistic>
+                <statistic aggregation='Max' datatype='integer'>563</statistic>
+                <statistic aggregation='Stdev' datatype='real'>74.065109921988963</statistic>
+                <statistic aggregation='StdevP' datatype='real'>74.033095608877986</statistic>
+                <statistic aggregation='Var' datatype='real'>5485.6405077563077</statistic>
+                <statistic aggregation='VarP' datatype='real'>5480.8992454332692</statistic>
+                <statistic aggregation='Count' datatype='integer'>1157</statistic>
+                <statistic aggregation='SumXSqr' datatype='real'>8721915.0</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (comparable)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;array&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (distinct)'>true</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>2</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (sort-position)'>5</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (sort-sense)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>1</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;sint16&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Number of Records</remote-name>
+              <remote-type>16</remote-type>
+              <local-name>[Number of Records]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Number of Records</remote-alias>
+              <ordinal>1</ordinal>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1</approx-count>
+              <contains-null>false</contains-null>
+              <statistics>
+                <statistic aggregation='Sum' datatype='real'>1157.0</statistic>
+                <statistic aggregation='Avg' datatype='real'>1.0</statistic>
+                <statistic aggregation='Min' datatype='integer'>1</statistic>
+                <statistic aggregation='Max' datatype='integer'>1</statistic>
+                <statistic aggregation='Stdev' datatype='real'>0.0</statistic>
+                <statistic aggregation='StdevP' datatype='real'>0.0</statistic>
+                <statistic aggregation='Var' datatype='real'>0.0</statistic>
+                <statistic aggregation='VarP' datatype='real'>0.0</statistic>
+                <statistic aggregation='Count' datatype='integer'>1157</statistic>
+                <statistic aggregation='Median' datatype='integer'>1</statistic>
+                <statistic aggregation='SumXSqr' datatype='real'>1157.0</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='string' name='DebugRemoteMetadata (ordered)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>1</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;sint8&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>avg</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[avg]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>avg</remote-alias>
+              <ordinal>2</ordinal>
+              <family>baseball_data.csv1</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>157</approx-count>
+              <contains-null>false</contains-null>
+              <statistics>
+                <statistic aggregation='Sum' datatype='real'>216.11999999999981</statistic>
+                <statistic aggregation='Avg' datatype='real'>0.18679343128781314</statistic>
+                <statistic aggregation='Min' datatype='real'>0.0</statistic>
+                <statistic aggregation='Max' datatype='real'>0.32800000000000001</statistic>
+                <statistic aggregation='Stdev' datatype='real'>0.10617544251611546</statistic>
+                <statistic aggregation='StdevP' datatype='real'>0.10612954865509254</statistic>
+                <statistic aggregation='Var' datatype='real'>0.011273224593492941</statistic>
+                <statistic aggregation='VarP' datatype='real'>0.011263481097733655</statistic>
+                <statistic aggregation='Count' datatype='integer'>1157</statistic>
+                <statistic aggregation='SumXSqr' datatype='real'>53.401643999999976</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (comparable)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;array&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (distinct)'>true</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (sort-position)'>4</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (sort-sense)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>1</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;double&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>handedness</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[handedness]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>handedness</remote-alias>
+              <ordinal>3</ordinal>
+              <family>baseball_data.csv1</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>3</approx-count>
+              <scale>1</scale>
+              <width>1073741823</width>
+              <contains-null>false</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <statistics>
+                <statistic aggregation='Min' datatype='string'>&quot;B&quot;</statistic>
+                <statistic aggregation='Max' datatype='string'>&quot;R&quot;</statistic>
+                <statistic aggregation='Count' datatype='integer'>1157</statistic>
+                <statistic aggregation='Median' datatype='string'>&quot;R&quot;</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (comparable)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (distinct)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (ordered)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (sort-position)'>0</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (sort-sense)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>1</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>height</remote-name>
+              <remote-type>16</remote-type>
+              <local-name>[height]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>height</remote-alias>
+              <ordinal>4</ordinal>
+              <family>baseball_data.csv1</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>16</approx-count>
+              <contains-null>false</contains-null>
+              <statistics>
+                <statistic aggregation='Sum' datatype='real'>84179.0</statistic>
+                <statistic aggregation='Avg' datatype='real'>72.756266205704407</statistic>
+                <statistic aggregation='Min' datatype='integer'>65</statistic>
+                <statistic aggregation='Max' datatype='integer'>80</statistic>
+                <statistic aggregation='Stdev' datatype='real'>2.1422724792705532</statistic>
+                <statistic aggregation='StdevP' datatype='real'>2.1413464915552494</statistic>
+                <statistic aggregation='Var' datatype='real'>4.5893313754400022</statistic>
+                <statistic aggregation='VarP' datatype='real'>4.5853647968959752</statistic>
+                <statistic aggregation='Count' datatype='integer'>1157</statistic>
+                <statistic aggregation='SumXSqr' datatype='real'>6129855.0</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>1</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (sort-position)'>2</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (sort-sense)'>&quot;asc&quot;</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;sint8&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[name]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>name</remote-alias>
+              <ordinal>5</ordinal>
+              <family>baseball_data.csv1</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>1151</approx-count>
+              <scale>1</scale>
+              <width>1073741823</width>
+              <contains-null>false</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <statistics>
+                <statistic aggregation='Min' datatype='string'>&quot;Adolfo Phillips&quot;</statistic>
+                <statistic aggregation='Max' datatype='string'>&quot;Zach Crouch&quot;</statistic>
+                <statistic aggregation='Count' datatype='integer'>1157</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (comparable)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (distinct)'>true</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (sort-position)'>1</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (sort-sense)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>2</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>weight</remote-name>
+              <remote-type>2</remote-type>
+              <local-name>[weight]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>weight</remote-alias>
+              <ordinal>6</ordinal>
+              <family>baseball_data.csv1</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>63</approx-count>
+              <contains-null>false</contains-null>
+              <statistics>
+                <statistic aggregation='Sum' datatype='real'>213482.0</statistic>
+                <statistic aggregation='Avg' datatype='real'>184.51339671564389</statistic>
+                <statistic aggregation='Min' datatype='integer'>140</statistic>
+                <statistic aggregation='Max' datatype='integer'>245</statistic>
+                <statistic aggregation='Stdev' datatype='real'>15.445994832283111</statistic>
+                <statistic aggregation='StdevP' datatype='real'>15.439318369973231</statistic>
+                <statistic aggregation='Var' datatype='real'>238.57875635891654</statistic>
+                <statistic aggregation='VarP' datatype='real'>238.37255172939285</statistic>
+                <statistic aggregation='Count' datatype='integer'>1157</statistic>
+                <statistic aggregation='SumXSqr' datatype='real'>39666086.0</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (comparable)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;array&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (distinct)'>true</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>2</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (sort-position)'>3</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (sort-sense)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>1</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;sint16&quot;</attribute>
+              </attributes>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.41841' measure-ordering='alphabetic' measure-percentage='0.58159' show-structure='true' user-set-layout='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:handedness:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;B&quot;</bucket>
+            </map>
+            <map to='#9c755f'>
+              <bucket>&quot;R&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;L&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:name:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Rod Carew&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;Tony Oliva&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;Ralph Garr&quot;</bucket>
+            </map>
+            <map to='#b07aa1'>
+              <bucket>&quot;Bake McBride&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;Matty Alou&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;Al Oliver&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Lyman Bostock&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <shared-views>
+    <shared-view name='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+      <datasources>
+        <datasource caption='baseball_data' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+        <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+        <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <filter class='categorical' column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]'>
+        <groupfilter function='level-members' level='[none:handedness:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+        <target field='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]' />
+      </filter>
+    </shared-view>
+  </shared-views>
+  <worksheets>
+    <worksheet name='AVG Boxplot Handedness'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Boxplot of Batting Avg by Handedness</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='baseball_data' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+            <column caption='Avg' datatype='real' name='[avg]' role='measure' type='quantitative' />
+            <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+            <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+            <column-instance column='[avg]' derivation='Sum' name='[sum:avg:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</column>
+          </slices>
+          <aggregation value='false' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <encodings>
+              <lod column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]' />
+            </encodings>
+            <reference-line axis-column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' boxplot-mark-exclusion='false' boxplot-whisker-type='standard' enable-instant-analytics='true' formula='average' id='refline0' label-type='automatic' probability='95' scope='per-cell' symmetric='false' value-column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' z-order='1' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.25' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]</rows>
+        <cols>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Batting Avg by Weight and Height'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='baseball_data' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+            <column caption='Avg' datatype='real' name='[avg]' role='measure' type='quantitative' />
+            <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+            <column caption='Height' datatype='integer' name='[height]' role='measure' type='quantitative' />
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[avg]' derivation='Sum' name='[sum:avg:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[height]' derivation='Sum' name='[sum:height:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[weight]' derivation='Sum' name='[sum:weight:qk]' pivot='key' type='quantitative' />
+            <column caption='Weight' datatype='integer' name='[weight]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <size column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' />
+              <text column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-color' value='#e15759' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:weight:qk]</rows>
+        <cols>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:height:qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='HR Boxplot Handedness'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Boxplot of Home Runs by Handedness</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='baseball_data' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+            <column datatype='integer' name='[HR]' role='measure' type='quantitative' />
+            <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+            <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+            <column-instance column='[HR]' derivation='Sum' name='[sum:HR:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</column>
+          </slices>
+          <aggregation value='false' />
+        </view>
+        <style />
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <encodings>
+              <lod column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]' />
+            </encodings>
+            <reference-line axis-column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:HR:qk]' boxplot-mark-exclusion='false' boxplot-whisker-type='standard' enable-instant-analytics='true' formula='average' id='refline0' label-type='automatic' probability='95' scope='per-cell' symmetric='false' value-column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:HR:qk]' z-order='1' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.25' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:HR:qk]</rows>
+        <cols>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='HR by Weight and Height of Athletes'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='baseball_data' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+            <column datatype='integer' name='[HR]' role='measure' type='quantitative' />
+            <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+            <column caption='Height' datatype='integer' name='[height]' role='measure' type='quantitative' />
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[HR]' derivation='Sum' name='[sum:HR:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[height]' derivation='Sum' name='[sum:height:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[weight]' derivation='Sum' name='[sum:weight:qk]' pivot='key' type='quantitative' />
+            <column caption='Weight' datatype='integer' name='[weight]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <size column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:HR:qk]' />
+              <text column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='shape' value='circle' />
+                <format attr='mark-color' value='#f28e2b' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:weight:qk]</rows>
+        <cols>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:height:qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Number of Athletes by Handedness'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Number of Athletes by Handedness</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='baseball_data' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+            <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+              <calculation class='tableau' formula='1' />
+            </column>
+            <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+            <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:Number of Records:qk]</rows>
+        <cols>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Sheet 16'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Top 10% Batting Avg Athletes</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='baseball_data' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+            <column caption='Avg' datatype='real' name='[avg]' role='measure' type='quantitative' />
+            <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[avg]' derivation='Sum' name='[sum:avg:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]'>
+            <groupfilter count='10' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='PERCENTILE([avg],0.10)' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:name:nk]' user:ui-manual-selection='true' user:ui-manual-selection-all-when-empty='true' user:ui-manual-selection-is-empty='true' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <sort class='computed' column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]' direction='DESC' using='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' />
+          <slices>
+            <column>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</column>
+            <column>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#499894' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]</rows>
+        <cols>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Sheet 17'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Top 10% HR Athletes</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='baseball_data' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+            <column datatype='integer' name='[HR]' role='measure' type='quantitative' />
+            <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[HR]' derivation='Sum' name='[sum:HR:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]'>
+            <groupfilter count='10' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='PERCENTILE([HR],0.10)' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:name:nk]' user:ui-manual-selection='true' user:ui-manual-selection-all-when-empty='true' user:ui-manual-selection-is-empty='true' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <sort class='computed' column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]' direction='DESC' using='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:HR:qk]' />
+          <slices>
+            <column>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</column>
+            <column>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#e15759' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:HR:qk]</rows>
+        <cols>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='avg and hr by both-hand'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Both-Handed Athletes</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='baseball_data' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+            <column datatype='integer' name='[HR]' role='measure' type='quantitative' />
+            <column caption='Avg' datatype='real' name='[avg]' role='measure' type='quantitative' />
+            <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[HR]' derivation='Sum' name='[sum:HR:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[avg]' derivation='Sum' name='[sum:avg:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' scope='cols' value='Batting Avg' />
+            <format attr='subtitle' class='0' field='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' scope='cols' value='' />
+            <format attr='auto-subtitle' class='0' field='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' scope='cols' value='true' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:HR:qk]</rows>
+        <cols>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='avg and hr by left-hand'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Left-Handed Athletes</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='baseball_data' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+            <column datatype='integer' name='[HR]' role='measure' type='quantitative' />
+            <column caption='Avg' datatype='real' name='[avg]' role='measure' type='quantitative' />
+            <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[HR]' derivation='Sum' name='[sum:HR:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[avg]' derivation='Sum' name='[sum:avg:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' scope='cols' value='Batting Avg' />
+            <format attr='subtitle' class='0' field='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' scope='cols' value='' />
+            <format attr='auto-subtitle' class='0' field='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' scope='cols' value='true' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:HR:qk]</rows>
+        <cols>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='avg and hr by right-hand'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Right-Handed Athletes</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='baseball_data' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+            <column datatype='integer' name='[HR]' role='measure' type='quantitative' />
+            <column caption='Avg' datatype='real' name='[avg]' role='measure' type='quantitative' />
+            <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[HR]' derivation='Sum' name='[sum:HR:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[avg]' derivation='Sum' name='[sum:avg:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='title' class='0' field='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' scope='cols' value='Batting Avg' />
+            <format attr='subtitle' class='0' field='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' scope='cols' value='' />
+            <format attr='auto-subtitle' class='0' field='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' scope='cols' value='true' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:HR:qk]</rows>
+        <cols>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='Dashboard 2'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='1' name='Number of Athletes by Handedness' w='100000' x='0' y='0' />
+        </zone>
+      </zones>
+    </dashboard>
+    <dashboard name='Dashboard 3'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <datasources>
+        <datasource caption='baseball_data' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+        <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+        <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='5' param='horz' type='layout-flow' w='100000' x='0' y='0'>
+            <zone h='100000' id='3' type='layout-basic' w='84000' x='0' y='0'>
+              <zone h='100000' id='1' name='HR by Weight and Height of Athletes' w='42000' x='0' y='0' />
+              <zone h='100000' id='8' name='Batting Avg by Weight and Height' w='42000' x='42000' y='0' />
+            </zone>
+            <zone fixed-size='160' h='100000' id='4' is-fixed='true' param='vert' type='layout-flow' w='16000' x='84000' y='0'>
+              <zone h='14000' id='6' name='HR by Weight and Height of Athletes' param='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]' type='filter' w='16000' x='84000' y='0' />
+              <zone h='13250' id='7' name='HR by Weight and Height of Athletes' pane-specification-id='0' param='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:HR:qk]' type='size' w='16000' x='84000' y='14000' />
+              <zone h='18250' id='9' name='Batting Avg by Weight and Height' pane-specification-id='0' param='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' type='size' w='16000' x='84000' y='27250' />
+            </zone>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
+    <dashboard name='Dashboard 5'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='1' name='avg and hr by left-hand' w='33300' x='0' y='0' />
+          <zone h='100000' id='3' name='avg and hr by right-hand' w='35800' x='33300' y='0' />
+          <zone h='100000' id='4' name='avg and hr by both-hand' w='30900' x='69100' y='0' />
+        </zone>
+      </zones>
+    </dashboard>
+    <dashboard name='Dashboard 7'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='1' name='HR Boxplot Handedness' w='50000' x='0' y='0' />
+          <zone h='100000' id='3' name='AVG Boxplot Handedness' w='50000' x='50000' y='0' />
+        </zone>
+      </zones>
+    </dashboard>
+    <dashboard name='Dashboard 8'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <datasources>
+        <datasource caption='baseball_data' name='federated.0ytjt9r11q1p4s17klffl0zjmo6a' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0ytjt9r11q1p4s17klffl0zjmo6a'>
+        <column caption='Handedness' datatype='string' name='[handedness]' role='dimension' type='nominal' />
+        <column-instance column='[handedness]' derivation='None' name='[none:handedness:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='5' param='horz' type='layout-flow' w='100000' x='0' y='0'>
+            <zone h='100000' id='3' type='layout-basic' w='84000' x='0' y='0'>
+              <zone h='100000' id='1' name='Sheet 16' w='42000' x='0' y='0' />
+              <zone h='100000' id='7' name='Sheet 17' w='42000' x='42000' y='0' />
+            </zone>
+            <zone fixed-size='160' h='100000' id='4' is-fixed='true' param='vert' type='layout-flow' w='16000' x='84000' y='0'>
+              <zone h='14000' id='6' name='Sheet 16' param='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]' type='filter' w='16000' x='84000' y='0' />
+            </zone>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
+    <dashboard name='Differences in Performance by Handedness' type='storyboard'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Are There Differences in Performance by Handedness of Baseball Athletes?</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <style>
+        <style-rule element='story-point-caption'>
+          <format attr='width' value='304' />
+        </style-rule>
+      </style>
+      <size maxheight='1000' maxwidth='1100' minheight='1000' minwidth='1100' preset-index='1' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='9' param='vert' removable='false' type='layout-flow' w='100000' x='0' y='0'>
+            <zone h='4500' id='8' type='title' w='100000' x='0' y='0' />
+            <zone h='95100' id='1' param='vert' removable='false' type='layout-flow' w='100000' x='0' y='4500'>
+              <zone fixed-size='123' h='13100' id='4' is-fixed='true' paired-zone-id='5' removable='false' type='flipboard-nav' w='100000' x='0' y='4500' />
+              <zone h='82000' id='5' paired-zone-id='4' removable='false' type='flipboard' w='100000' x='0' y='17600'>
+                <flipboard active-id='6' nav-type='caption' show-nav-arrows='true'>
+                  <story-points>
+                    <story-point caption='Most of the athletes are right-handed. ' captured-sheet='Dashboard 2' id='1' />
+                    <story-point caption='Weight and height have some effect on batting avg but not on home runs. ' captured-sheet='Dashboard 3' id='5' />
+                    <story-point caption=' While the athletes have equal spread of home runs, the spread of batting avg differs slightly by handedness. Batting avg and home runs are not correlated to each other.' captured-sheet='Dashboard 5' id='6' />
+                    <story-point caption='Athletes are more likely to have batting avg in common than home runs.' captured-sheet='Dashboard 8' id='7' />
+                    <story-point caption='The athletes who have the highest home runs and batting avgs are left-handed. ' captured-sheet='Dashboard 7' id='4' />
+                  </story-points>
+                </flipboard>
+              </zone>
+            </zone>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='dashboard' maximized='true' name='Differences in Performance by Handedness'>
+      <viewpoints />
+      <active id='4' />
+    </window>
+    <window class='worksheet' hidden='true' name='AVG Boxplot Handedness'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+    <window class='worksheet' hidden='true' name='Batting Avg by Weight and Height'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]' type='filter' />
+            <card pane-specification-id='0' param='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]' type='size' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</field>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+    <window class='dashboard' hidden='true' name='Dashboard 2'>
+      <viewpoints>
+        <viewpoint name='Number of Athletes by Handedness'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='1' />
+    </window>
+    <window class='dashboard' hidden='true' name='Dashboard 3'>
+      <viewpoints>
+        <viewpoint name='Batting Avg by Weight and Height'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='HR by Weight and Height of Athletes'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='-1' />
+    </window>
+    <window class='dashboard' hidden='true' name='Dashboard 5'>
+      <viewpoints>
+        <viewpoint name='avg and hr by both-hand'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='avg and hr by left-hand'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='avg and hr by right-hand'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='1' />
+    </window>
+    <window class='dashboard' hidden='true' name='Dashboard 7'>
+      <viewpoints>
+        <viewpoint name='AVG Boxplot Handedness'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='HR Boxplot Handedness'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='1' />
+    </window>
+    <window class='dashboard' hidden='true' name='Dashboard 8'>
+      <viewpoints>
+        <viewpoint name='Sheet 16'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Sheet 17'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='1' />
+    </window>
+    <window class='worksheet' hidden='true' name='HR Boxplot Handedness'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:HR:qk]</field>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+    <window class='worksheet' hidden='true' name='HR by Weight and Height of Athletes'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]' type='filter' />
+            <card pane-specification-id='0' param='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:HR:qk]' type='size' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</field>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]</field>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+    <window class='worksheet' hidden='true' name='Number of Athletes by Handedness'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</field>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+    <window class='worksheet' hidden='true' name='Sheet 16'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</field>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+    <window class='worksheet' hidden='true' name='Sheet 17'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</field>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+    <window class='worksheet' hidden='true' name='avg and hr by both-hand'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</field>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+    <window class='worksheet' hidden='true' name='avg and hr by left-hand'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <selection-collection>
+          <node-selection select-tuples='false'>
+            <oriented-node-reference orientation='horizontal'>
+              <node-reference>
+                <axis>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]</axis>
+              </node-reference>
+              <page-reference />
+            </oriented-node-reference>
+          </node-selection>
+        </selection-collection>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</field>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+    <window class='worksheet' hidden='true' name='avg and hr by right-hand'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <selection-collection>
+          <node-selection select-tuples='false'>
+            <oriented-node-reference orientation='horizontal'>
+              <node-reference>
+                <axis>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[sum:avg:qk]</axis>
+              </node-reference>
+              <page-reference />
+            </oriented-node-reference>
+          </node-selection>
+        </selection-collection>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:handedness:nk]</field>
+            <field>[federated.0ytjt9r11q1p4s17klffl0zjmo6a].[none:name:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Differences in Performance by Handedness' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>
