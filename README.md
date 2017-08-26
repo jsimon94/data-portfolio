@@ -1,4 +1,4 @@
-# Data Analyst Projects
+# Data Analyst Portfolio
 Projects I have done on the side.
 
 ## P1: Test a Perceptual Phenomenon
