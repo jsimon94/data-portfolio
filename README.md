@@ -29,6 +29,6 @@ Explored performance differences among baseball players who are right-handed, le
 Predicted the persons who bought car insurance after the phone marketing campaign. 
 [Link to report](https://github.com/teamaiden/data-portfolio/blob/master/speed_hackers_data_set/Hackathon.ipynb)
 
-## P7: Designing and Creating a Database
-Created a Baseball Databse using baseball data from Retrosheet.org.
+## P7: Designing and Creating a Baseball Database
+Created a Baseball Database using baseball data from Retrosheet.org.
 [Link to report](https://github.com/jsimon94/data-portfolio/blob/master/Designing%20and%20Creating%20a%20Baseball%20Database.ipynb)
