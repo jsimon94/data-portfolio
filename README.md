@@ -28,3 +28,7 @@ Explored performance differences among baseball players who are right-handed, le
 ## NY Data Science Hackers: Hackathon
 Predicted the persons who bought car insurance after the phone marketing campaign. 
 [Link to report](https://github.com/teamaiden/data-portfolio/blob/master/speed_hackers_data_set/Hackathon.ipynb)
+
+## P7: Designing and Creating a Database
+Created a Baseball Databse using baseball data from Retrosheet.org.
+[Link to report]()
