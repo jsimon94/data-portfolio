@@ -31,4 +31,4 @@ Predicted the persons who bought car insurance after the phone marketing campaig
 
 ## P7: Designing and Creating a Database
 Created a Baseball Databse using baseball data from Retrosheet.org.
-[Link to report]()
+[Link to report](https://github.com/jsimon94/data-portfolio/blob/master/Designing%20and%20Creating%20a%20Baseball%20Database.ipynb)
